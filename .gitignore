@@ -84,3 +84,7 @@ models/*
 
 # Explanation file
 explain.txt
+
+# Prompts
+*gemini.md
+*guidelines.md
