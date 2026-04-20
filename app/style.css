@@ -1,0 +1,125 @@
+/* Advanced Modern Dashboard Theme - UpliftX */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Global Reset & Typography */
+.stApp {
+    background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+    color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Header Aesthetics */
+h1 {
+    font-size: 3rem !important;
+    background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800 !important;
+    letter-spacing: -0.05em;
+    padding-bottom: 0.5rem;
+}
+
+h2, h3 {
+    color: #cbd5e1 !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar Styling - Premium Dark Mode */
+[data-testid="stSidebar"] {
+    background: rgba(15, 23, 42, 0.95) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* Card/Container Aesthetics (Glassmorphism) */
+div.stPlotlyChart {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+[data-testid="metric-container"] {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-testid="metric-container"]:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.5) !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: #60a5fa !important;
+    font-weight: 700 !important;
+}
+
+/* FIX: Weird Slider Highlighting */
+.stSlider {
+    padding-bottom: 2rem;
+}
+
+/* Remove the blue focus box around sliders/widgets */
+.stSlider [data-baseweb="slider"] {
+    background-color: transparent !important;
+}
+
+.stSlider div[data-baseweb="slider"] > div:first-child {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    height: 6px;
+    border-radius: 3px;
+}
+
+.stSlider div[role="slider"] {
+    background-color: #60a5fa !important;
+    border: 2px solid white;
+}
+
+/* Modern Dataframe Styling */
+[data-testid="stDataFrame"] {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+/* Radio Button Aesthetics */
+div[data-testid="stRadio"] label {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+}
+
+div[data-testid="stRadio"] div[role="radiogroup"] > label {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+div[data-testid="stRadio"] div[role="radiogroup"] > label:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Success Message Refinement */
+.stAlert {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+    border-radius: 12px !important;
+}
+
+/* Plotly Toolbar hiding */
+.modebar {
+    display: none !important;
+}
