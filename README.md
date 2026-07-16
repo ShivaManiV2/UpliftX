@@ -42,8 +42,6 @@ UpliftX/
 ├── requirements.txt
 ├── README.md
 ├── FUTURE_SUGGESTIONS.md        # Roadmap / ideas for the next iteration
-├── UI_CUSTOMIZATION_GUIDE.md    # Map of "what to edit, and where" for UI changes
-├── PROJECT_KNOWLEDGE.html       # Full project knowledge doc (printable to PDF)
 └── .gitignore
 ```
 
