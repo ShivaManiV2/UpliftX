@@ -122,5 +122,3 @@ On first launch, the app will automatically:
 ## 📚 Further reading
 
 - [`FUTURE_SUGGESTIONS.md`](FUTURE_SUGGESTIONS.md) — roadmap and ideas for extending the project.
-- [`UI_CUSTOMIZATION_GUIDE.md`](UI_CUSTOMIZATION_GUIDE.md) — where to look when you want to change the dashboard's look, layout, or add a new page.
-- [`PROJECT_KNOWLEDGE.html`](PROJECT_KNOWLEDGE.html) — a comprehensive, print-to-PDF-friendly knowledge document covering everything about this project.
