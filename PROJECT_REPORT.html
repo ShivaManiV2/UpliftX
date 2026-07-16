@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UpliftX — Project Report</title>
+<style>
+  :root {
+    --ink: #1e293b;
+    --sub: #475569;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --blue: #2563eb;
+    --purple: #7c3aed;
+    --pink: #db2777;
+    --green: #059669;
+    --bg-soft: #f8fafc;
+    --code-bg: #0f172a;
+    --code-text: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+    color: var(--ink);
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+    line-height: 1.65;
+    font-size: 15.5px;
+  }
+  h1, h2, h3, h4 { color: var(--ink); font-weight: 800; line-height: 1.25; }
+  h1 { font-size: 2.3rem; margin-bottom: 0.15rem; }
+  h2 { font-size: 1.4rem; margin-top: 2.25rem; padding-top: 0.9rem; border-top: 2px solid var(--line); }
+  h3 { font-size: 1.1rem; margin-top: 1.5rem; color: var(--blue); }
+  p, li { color: var(--sub); }
+  code {
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 4px;
+    padding: 0.1rem 0.35rem; font-family: Consolas, monospace; font-size: 0.88em; color: var(--purple);
+  }
+  pre {
+    background: var(--code-bg); color: var(--code-text); border-radius: 10px;
+    padding: 1rem 1.25rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;
+  }
+  pre code { background: none; border: none; color: inherit; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0 1.5rem; font-size: 0.92rem; }
+  th, td { border: 1px solid var(--line); padding: 0.5rem 0.75rem; text-align: left; vertical-align: top; }
+  th { background: var(--bg-soft); font-weight: 700; }
+  tr:nth-child(even) td { background: #fbfcfe; }
+  .subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 1.25rem; }
+  .meta-row {
+    display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--muted);
+    border-bottom: 1px solid var(--line); padding-bottom: 1.1rem; margin-bottom: 1rem;
+  }
+  .badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; margin-right: 0.35rem; }
+  .b-blue { background: #dbeafe; color: #1d4ed8; }
+  .b-purple { background: #ede9fe; color: #6d28d9; }
+  .b-pink { background: #fce7f3; color: #be185d; }
+  .b-green { background: #d1fae5; color: #047857; }
+  .callout { background: var(--bg-soft); border-left: 4px solid var(--blue); border-radius: 6px; padding: 0.85rem 1.1rem; margin: 1rem 0; }
+  .callout.done { border-left-color: var(--green); }
+  .callout.warn { border-left-color: #d97706; }
+  .print-btn {
+    position: fixed; top: 1.25rem; right: 1.25rem; background: var(--blue); color: white; border: none;
+    padding: 0.6rem 1.1rem; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+  }
+  section { page-break-inside: avoid; }
+  .file-tree {
+    background: var(--code-bg); color: var(--code-text); border-radius: 10px; padding: 1.1rem 1.4rem;
+    font-family: Consolas, monospace; font-size: 0.82rem; white-space: pre; overflow-x: auto;
+  }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; text-align: center; }
+  @media print {
+    .print-btn { display: none; }
+    body { max-width: 100%; padding: 0.5cm; font-size: 12px; }
+    a { color: var(--ink); text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+<h1>🚀 UpliftX</h1>
+<div class="subtitle">Project Report</div>
+<div class="meta-row">
+  <span><strong>Type:</strong> Uplift modeling &amp; ROI simulation dashboard</span>
+  <span><strong>Stack:</strong> Python, XGBoost, scikit-learn, Streamlit, Plotly</span>
+  <span><strong>Format:</strong> Printable HTML — use the Print button or Ctrl/Cmd+P → Save as PDF</span>
+</div>
+<span class="badge b-blue">T-Learner</span>
+<span class="badge b-purple">XGBoost</span>
+<span class="badge b-pink">Qini Evaluation</span>
+<span class="badge b-green">ROI Simulation</span>
+
+<section>
+<h2>1. Executive Summary</h2>
+<p>
+UpliftX is a machine-learning application that identifies which customers a marketing campaign should
+actually target. Rather than predicting who is likely to convert, it predicts who converts
+<strong>because</strong> they were targeted — the customers a campaign genuinely influences. This
+lets a business avoid spending on people who would have converted anyway (or never will), and
+instead concentrate budget on the segment where outreach creates real incremental revenue.
+</p>
+<p>
+The project is delivered as a five-page interactive Streamlit dashboard, backed by a modular Python
+pipeline that handles data ingestion, feature engineering, uplift modeling (a T-Learner built on two
+XGBoost classifiers), churn risk scoring, model evaluation (Qini curves and a Qini coefficient), and
+a business ROI simulator with adjustable cost/revenue assumptions.
+</p>
+</section>
+
+<section>
+<h2>2. Objective &amp; Business Value</h2>
+<ul>
+<li><strong>Objective:</strong> quantify the incremental effect of a marketing email on each customer, and use that to recommend an optimal targeting depth.</li>
+<li><strong>Business value:</strong> demonstrates how uplift modeling turns a marketing spend decision ("who do we email?") into a profit-optimization problem with a defensible, data-driven answer.</li>
+<li><strong>Audience:</strong> useful both as a working analytics tool and as a portfolio piece demonstrating causal/uplift ML applied end-to-end, from raw data to a business decision.</li>
+</ul>
+</section>
+
+<section>
+<h2>3. Dataset</h2>
+<p>
+The <strong>Hillstrom MineThatData E-Mail Analytics Challenge</strong> dataset — a real, randomized
+marketing experiment covering ~64,000 customers, each randomly assigned to a Men's email campaign,
+a Women's email campaign, or no email (control), with website visit outcomes tracked afterward.
+Randomization makes this one of the few public datasets where uplift models can be validated against
+ground truth without confounding.
+</p>
+</section>
+
+<section>
+<h2>4. Methodology</h2>
+<h3>T-Learner Uplift Model</h3>
+<pre><code>Model_T: XGBoost classifier fit on treated customers  → P(visit=1 | X, treated)
+Model_C: XGBoost classifier fit on control customers  → P(visit=1 | X, control)
+
+Uplift Score = Model_T(X) − Model_C(X)</code></pre>
+<p>
+Customers are ranked by this score, and the top-ranked customers are the "persuadables" — the
+highest-value targets for the campaign.
+</p>
+<h3>Evaluation</h3>
+<p>
+Model quality is assessed with a <strong>Qini curve</strong> (cumulative incremental conversions
+captured vs. random targeting), a single-number <strong>Qini coefficient</strong> (area between the
+model curve and the random baseline), and <strong>decile-level</strong> incremental conversion rates.
+Feature importances are extracted separately for <code>Model_T</code> and <code>Model_C</code> to
+understand what drives response under each condition.
+</p>
+<h3>Churn Risk</h3>
+<p>
+A separate XGBoost classifier flags customers unlikely to convert regardless of treatment —
+useful for suppression lists, distinct from the uplift-driven targeting strategy.
+</p>
+<h3>Business Simulation</h3>
+<p>
+Given a cost-per-treatment and revenue-per-conversion assumption, the app evaluates ten candidate
+targeting depths (top 10%–100% of customers by uplift score) and reports the profit-maximizing depth,
+with full cost/revenue/ROI breakdown and CSV export.
+</p>
+</section>
+
+<section>
+<h2>5. System Architecture</h2>
+<div class="file-tree">Hillstrom CSV → load &amp; preprocess → feature engineering (scale + one-hot encode)
+        │
+        ├──▶ T-Learner (Model_T, Model_C)  → uplift scores → Qini evaluation
+        │                                                   → business ROI simulation
+        └──▶ Churn model                    → churn risk scores
+
+All stages are orchestrated by app/app.py (Streamlit) and cached so the
+dashboard is responsive after the first (one-time) training pass.</div>
+</section>
+
+<section>
+<h2>6. Dashboard</h2>
+<table>
+<tr><th>Page</th><th>Purpose</th></tr>
+<tr><td>🏠 Overview</td><td>Project summary, methodology explanation, pipeline diagram</td></tr>
+<tr><td>📊 Data Explorer</td><td>Dataset KPIs, conversion rates by group/channel, distributions</td></tr>
+<tr><td>🎯 Model Evaluation</td><td>Qini coefficient, Qini curve, decile uplift, feature importance</td></tr>
+<tr><td>⚠️ Churn Risk</td><td>Churn model accuracy/AUC, risk distribution, top at-risk customers</td></tr>
+<tr><td>💰 Business Simulation</td><td>Interactive cost/revenue sliders, profit curve, CSV export</td></tr>
+</table>
+</section>
+
+<section>
+<h2>7. Technology Stack</h2>
+<table>
+<tr><th>Layer</th><th>Technology</th></tr>
+<tr><td>Modeling</td><td>XGBoost, scikit-learn</td></tr>
+<tr><td>Data</td><td>Pandas, NumPy</td></tr>
+<tr><td>Visualization</td><td>Plotly (dashboard), Matplotlib/Seaborn (notebook)</td></tr>
+<tr><td>Application</td><td>Streamlit</td></tr>
+<tr><td>Persistence</td><td>joblib</td></tr>
+</table>
+</section>
+
+<section>
+<h2>8. Limitations &amp; Next Steps</h2>
+<div class="callout warn">
+<ul>
+<li>Models retrain on every cold start rather than loading saved artifacts.</li>
+<li>Evaluation uses a single train/test split — no cross-validation or confidence intervals yet.</li>
+<li>Treatment is modeled as binary (any email vs. none); Men's/Women's campaigns aren't distinguished.</li>
+<li>No automated test coverage on the evaluation/simulation math yet.</li>
+</ul>
+</div>
+<div class="callout done">
+<strong>Recommended next steps:</strong> load pre-trained models on startup, add pytest coverage for
+<code>evaluator.py</code>/<code>business_sim.py</code>, and add S-Learner/X-Learner alternatives with
+a model-comparison view. Full roadmap in <code>FUTURE_SUGGESTIONS.md</code>.
+</div>
+</section>
+
+<section>
+<h2>9. Conclusion</h2>
+<p>
+UpliftX demonstrates a complete, working uplift-modeling pipeline — from a raw randomized-experiment
+dataset to a business-facing profit recommendation — wrapped in an interactive dashboard. It is
+functional, evaluable (via Qini metrics), and extensible, with a documented roadmap for further
+depth (additional meta-learners, cross-validation, automated testing, and pre-trained model loading).
+</p>
+</section>
+
+<footer>UpliftX Project Report · For full technical detail see the project's README and source code.</footer>
+
+</body>
+</html>

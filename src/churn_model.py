@@ -33,8 +33,13 @@ def train_churn_model(X, y_churn, test_size=0.2, random_state=42, save_path="mod
     
     if save_path:
         save_model(model, save_path)
-        
-    return model
+
+    metrics = {
+        'accuracy': accuracy_score(y_test, y_pred),
+        'roc_auc': roc_auc_score(y_test, y_prob)
+    }
+
+    return model, X_test, y_test, y_prob, metrics
 
 if __name__ == "__main__":
     from data_loader import load_data, preprocess_basic
@@ -48,3 +53,4 @@ if __name__ == "__main__":
     y_churn = (df['visit'] == 0).astype(int)
     
     train_churn_model(X, y_churn)
+

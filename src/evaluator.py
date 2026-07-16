@@ -32,8 +32,41 @@ def calculate_qini(df, target_col='y_true', treatment_col='treatment', uplift_co
     
     df_sorted['n_pop'] = np.arange(1, len(df_sorted) + 1)
     df_sorted['random_cumulative'] = df_sorted['n_pop'] * (total_uplift / len(df_sorted))
-    
+
     return df_sorted
+
+
+def calculate_qini_coefficient(qini_df):
+    """
+    Calculates the Qini coefficient (a.k.a. normalized AUUC):
+    the area between the model's Qini curve and the random baseline,
+    normalized by population size. Positive values indicate the model
+    outperforms random targeting; larger is better.
+    """
+    n = len(qini_df)
+    if n == 0:
+        return 0.0
+
+    trapezoid = np.trapezoid if hasattr(np, 'trapezoid') else np.trapz
+    model_area = trapezoid(qini_df['uplift_cumulative'], dx=1)
+    random_area = trapezoid(qini_df['random_cumulative'], dx=1)
+
+    qini_coefficient = (model_area - random_area) / n
+    return float(qini_coefficient)
+
+
+def get_top_feature_importance(model, feature_names, top_n=10):
+    """
+    Extracts the top-N feature importances from a fitted XGBoost classifier.
+    Returns a DataFrame sorted descending by importance.
+    """
+    importances = model.feature_importances_
+    imp_df = pd.DataFrame({
+        'feature': feature_names,
+        'importance': importances
+    }).sort_values(by='importance', ascending=False).head(top_n).reset_index(drop=True)
+
+    return imp_df
 
 def get_uplift_by_decile(df, target_col='y_true', treatment_col='treatment', uplift_col='uplift_score'):
     """

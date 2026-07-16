@@ -123,3 +123,160 @@ div[data-testid="stRadio"] div[role="radiogroup"] > label:hover {
 .modebar {
     display: none !important;
 }
+
+/* -----------------------------------------
+   Hero Banner
+----------------------------------------- */
+.hero-banner {
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.12), rgba(167, 139, 250, 0.12), rgba(244, 114, 182, 0.10));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-top: 0.25rem;
+}
+
+.hero-badges {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.badge-blue   { background: rgba(96, 165, 250, 0.15); color: #93c5fd; }
+.badge-purple { background: rgba(167, 139, 250, 0.15); color: #c4b5fd; }
+.badge-pink   { background: rgba(244, 114, 182, 0.15); color: #f9a8d4; }
+.badge-green  { background: rgba(52, 211, 153, 0.15); color: #6ee7b7; }
+
+/* -----------------------------------------
+   Info Cards
+----------------------------------------- */
+.uplift-card {
+    background: rgba(30, 41, 59, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.uplift-card:hover {
+    border-color: rgba(96, 165, 250, 0.4);
+    transform: translateY(-3px);
+}
+
+.uplift-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.6rem;
+}
+
+.uplift-card-subtitle {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* -----------------------------------------
+   Pipeline Flow Diagram
+----------------------------------------- */
+.flow-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.flow-step {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 0.9rem 1.1rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    text-align: center;
+    flex: 1 1 160px;
+    font-size: 0.9rem;
+}
+
+.flow-step span {
+    display: block;
+    color: #94a3b8;
+    font-weight: 400;
+    font-size: 0.78rem;
+    margin-top: 0.25rem;
+}
+
+.flow-arrow {
+    color: #60a5fa;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* -----------------------------------------
+   Sidebar footer & buttons
+----------------------------------------- */
+.sidebar-footer {
+    color: #64748b;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+
+.stButton > button,
+.stDownloadButton > button {
+    background: linear-gradient(to right, #60a5fa, #a78bfa) !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 0.55rem 1.4rem !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.stButton > button:hover,
+.stDownloadButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -8px rgba(96, 165, 250, 0.6);
+}
+
+/* Expander styling */
+[data-testid="stExpander"] {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

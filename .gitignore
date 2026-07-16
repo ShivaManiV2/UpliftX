@@ -75,6 +75,10 @@ data/processed/*
 models/*
 !models/.gitkeep
 
+# Local reference docs (dev-only, not tracked)
+UI_CUSTOMIZATION_GUIDE.md
+PROJECT_KNOWLEDGE.html
+
 # IDEs
 .idea/
 .vscode/
